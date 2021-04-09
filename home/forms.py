@@ -40,3 +40,5 @@ class EditForm(forms.ModelForm):
             # 'publish': forms.DateTimeField(attrs={'class':'form-control'}),
             
         }
+        
+
