@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    home
+{% endblock page_title %}
+
+{% block contents %}
+
+    <div class="row">
+      <div class="card col-md-8" style="box-shadow: 0 2px 3px rgba(0,0,0,0.3);">
+      
+          <div class="card-body">
+          <nav aria-label="artikelPage">
+            {% for post in object_list %}
+            <h1 class="card-title"><a class="text-dark" style="text-decoration:none" href="{% url 'article-detail' post.slug %}">{{post.title}}</a></h1>
+            <p>Kategori: {{post.category}} | {{post.published}}</p>
+            <p class="border-bottom">{{post.body|truncatewords_html:95|safe}} <a style="text-decoration:none" href="{% url 'article-detail' post.slug %}">Selengkapnya</a>
+              <br>
+              <small>
+      
+                {% if user.is_authenticated %} 
+                {% if user.id == post.author.id %}
+                <a href="{% url 'update-post' post.pk %}">[Edit]</a>
+                <a href="{% url 'delete-post' post.pk %}">[Delete]</a>
+                {% endif %}
+              {% endif %}
+              </small>
+            </p>
+            <br><br><br>
+            {% endfor %}
+      
+          </nav> 
+        
+      </div>
+      </div>
+
+
+ 
+        
+    <div class="col-sm" >
+          <div class="card " >
+          <div class="card-body " >
+          <h3>Kategori</h3>
+          <ul class="list-group list-group-flush">
+            {% for link in cat_menu %}
+              <li class="list-group-item">
+                <a href="{% url 'category' link %}">{{link}}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+          </div>
+      </div>
+    </div>
+
+    
+     
+      
+
+
+
+</div>
+    <br>
+{% include "snippets/footer.html" %}
+<br><br>
+{% endblock contents %}

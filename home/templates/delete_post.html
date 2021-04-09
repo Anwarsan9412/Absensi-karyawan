@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Add Post
+{% endblock page_title %}
+
+{% block contents %}
+
+{% if user.is_authenticated %}
+    
+    {% if user.id == post.author.id %}
+    <h1>Delete Post</h1>
+    <br><br>
+    <h3>Delete: {{post.title}}</h3>
+    <br>
+    
+        <div class="form-group">
+            <form action="" method="post">
+                {% csrf_token %}
+                <strong>Are yotu sure ?</strong><br><br>
+                <button class="btn btn-secondary btn-sm" type="submit">Delete Post</button>
+            </form>
+        </div>
+        {% else %}
+        <p>You're not allowed here!</p>
+    {% endif %}
+        
+    
+{% else %}
+<p>You're not allowed here!</p>
+{% endif %}
+    
+{% endblock contents %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Add Post
+{% endblock page_title %}
+
+{% block contents %}
+
+{% if user.is_authenticated %}
+    
+<h1>Add Article Post</h1>
+
+<div class="card-body">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="col-sm-auto">
+            {{ form.media}}
+            {{ form.as_p}}
+            <button class="btn btn-secondary btn-sm" type="submit">Add Post</button>
+        </div>
+        
+    </form>
+</div>
+
+<script>
+    var name = "{{ user.id }}";
+    document.getElementById("anwar").value = name;
+
+</script>
+
+{% else %}
+<p>You're not allowed here!</p>
+{% endif %}
+    
+{% endblock contents %}

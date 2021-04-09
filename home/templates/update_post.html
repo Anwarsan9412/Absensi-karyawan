@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Add Post
+{% endblock page_title %}
+
+{% block contents %}
+
+
+{% if user.is_authenticated %}
+
+    {% if user.id == post.author.id %}
+        
+    <h1>Update Post</h1>
+
+    <div class="card-body">
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-sm-auto">
+                {{ form.media}}
+                {{ form.as_p}}
+            </div>
+            <button class="btn btn-secondary btn-sm" type="submit">Update Post</button>
+        </form>
+    </div>
+    {% else %}
+        <p>You're not allowed here!</p>
+    {% endif %}
+    
+{% else %}
+<p>You're not allowed here!</p>
+{% endif %}
+    
+{% endblock contents %}

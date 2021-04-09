@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Detail
+{% endblock page_title %}
+
+{% block contents %}
+
+<h1 class="card-title">{{post.title}}</h1>
+<small>By: {{ post.author.first_name}} {{post.author.last_name}} - {{post.published}} <small>
+{% if user.is_authenticated %} 
+
+{% if user.id == post.author.id %}
+- <a href="{% url 'update-post' post.pk %}">[Edit]</a>
+<a href="{% url 'delete-post' post.pk %}">[Delete]</a>
+
+{% endif %}
+
+{% endif %}
+</small>
+</small><br>
+<hr>
+<p>{{post.body|safe}}</p>
+<small>updated : {{post.updated}}</small>
+
+
+<br><br>
+<a class="btn btn-secondary btn-sm" href="{% url 'home' %}">Back</a>
+<br><br>
+{% endblock contents %}

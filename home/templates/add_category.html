@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Add A New Category
+{% endblock page_title %}
+
+{% block contents %}
+<h1>Add Category Post</h1>
+
+<div class="card-body">
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <!-- <div class="col-sm-auto"> -->
+            <div class="form-floating mb-3">
+                <label for="name">Category Name: </label>
+                <input type="text" class="form-control" id="name" name="name">
+            
+              </div>
+              <button class="btn btn-secondary btn-sm mt-2" type="submit">Add Category</button>
+              
+           
+        </form>
+    </div>
+        
+
+      
+<!-- </div> -->
+{% endblock contents %}
