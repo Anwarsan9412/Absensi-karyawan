@@ -2,7 +2,7 @@ from pathlib import Path
 import django_heroku
 import dj_database_url
 from decouple import config
-
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'home',
     'members',
     'ckeditor',
+    'phone_field'
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 STATICFILES_DIRS : BASE_DIR / 'static'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
