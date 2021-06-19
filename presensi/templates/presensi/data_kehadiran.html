@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Riwayat Kehadiran
+{% endblock page_title %}
+
+{% block contents %}
+
+
+<section class="content" >
+    
+    <div class="row">
+      <div class="card col-md-12" style="box-shadow: 0 2px 3px rgba(0,0,0,0.3);">
+      
+        <div class="card-body"></div>
+          <h3 class="card-title text-center" style="margin-top: -30px;">Data Kehadiran</h3>
+             
+          <div class="row">
+            <div class="col text-right">
+              {{data  }}
+              <button class="btn btn-success" type="submit">Cari</button>
+              <button class="btn btn-success" type="submit">Cetak Laporan</button>
+              </div>
+              </div>
+            
+
+
+          <div class="card" style="margin-top: 10px;" >
+            <div class="card-header">
+                  
+              <form class="form-inline float-right">
+                  <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+  
+                <form class="form-inline float-left">
+                  <div class="input-group input-group-sm">
+                    <!-- <input class="form-control form-control-navbar" > -->
+                    <h4>Show</h4>
+                    <div class="input-group-append">
+                      <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+  
+  
+            </div>
+            
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead class="text-center">
+                <tr >
+                  <th rowspan="2" ><p text-align:"center"> NO</p></th>
+                  <th rowspan="2" ><p text-align:"center"> NIK</p></th>
+                  <th  rowspan="2"><p text-align:"center"> NAMA</p></th>
+                  <th  rowspan="2"><p text-align:"center"> TANGGAL</p></th>
+                  <th colspan="4" >AKTUAL</th>
+                  <th  rowspan="2"><p text-align:"center"> KETERANGAN</p></th>
+                </tr>
+                <tr>
+                  <th>Shift</th>
+                  <th>Status</th>
+                  <th>In</th>
+                  <th>Out</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- <tr> -->
+                  {% for presensis in presensi_list  %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{presensis.nik}}</td>
+                        <td>{{presensis.nama}}</td>
+                        <td>{{presensis.tanggal}}</td>
+                        <td>{{presensis.shift}}</td>
+                        <td>{{presensis.status}}</td>
+                        <td>{{presensis.jam_masuk}}</td>
+                        <td>{{presensis.jam_pulang}}</td>
+                        <td>{{presensis.keterangan}}</td>
+                      </tr>
+                  {% endfor %}
+
+    
+
+                <!-- </tr> -->
+                
+                </tbody>
+                <!-- <tfoot>
+                <tr>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  <th>CSS grade</th>
+                </tr>
+                </tfoot> -->
+              </table>
+              <!-- {{presensi_list}}<br>
+              Has Previous: {{presensi_list.has_previous}} <br>
+              Has Next: {{presensi_list.has_next}} <br>
+              Current Page: {{presensi_list.number}} <br>
+              Number of Pages: {{presensi_list.paginator.num_pages}} -->
+
+              <!-- https://www.youtube.com/watch?v=wY_BNsxCEi4 -->
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+              
+              {% if presensi_list.has_previous %}
+              
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{presensi_list.previous_page_number}}">Previous</a></li>
+              
+                {% endif %}
+              
+               {% for i in nums %}
+               <li class="page-item active">
+                 <li class="page-item "><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+               </li>
+                 {% endfor %}  
+                
+
+              {% if presensi_list.has_next %}
+                <li class="page-item "><a class="page-link" href="?page={{presensi_list.next_page_number}}">next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{presensi_list.paginator.num_pages}}">Last &raquo</a></li>
+               
+              {% endif %}
+
+              
+            </ul>
+            <span class="current">
+              Page {{ presensi_list.number }} of {{ presensi_list.paginator.num_pages }}.
+          </span>
+          </nav>
+                
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        
+               </div>
+        <!-- /.col -->
+          
+        </div>
+      </div>
+
+      
+
+      <div class="col-12">
+      
+    </div>
+    <!-- /.row -->
+  </section>
+
+
+  <script>
+    $(function () {
+      $("#{{ widget.datetimepicker_id }}").datetimepicker({
+        format: 'DD/MM/YYYY HH:mm',
+      });
+    });
+  </script>
+
+
+    <br>
+{% include "snippets/footer.html" %}
+<br><br>
+{% endblock contents %}

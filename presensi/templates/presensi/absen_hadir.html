@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Presensi
+{% endblock page_title %}
+
+{% block contents %}
+
+{% if user.is_authenticated %}
+    
+
+
+<div class="card-body">
+
+    <div class="row justify-content-center" >
+      <div class="col-md-8" >
+      <div class="card card-primary" style="box-shadow: 0 2px 3px rgba(0,0,0,0.3); padding: 40px;" >
+
+            <h5 class="card-title text-center">ABSEN KARYAWAN</h5>
+  
+          <form role="form" method="post">
+              {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Nama</label>
+                    <input type="text" class="form-control" id="recipient-name" value="{{request.user}}">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">NIK</label>
+                    <input type="text" class="form-control" id="recipient-name" value="{{profile.nik}}">
+                  </div>
+            <!-- </div> -->
+              <div class="card mt-4">
+                <!-- <a id=linkk href="{% url 'add-absen' %}" type="submit" onclick="myFunctionss()" class="btn btn-primary btn-lg">ABSEN</a> -->
+                <button type="submit" class="btn btn-primary btn-lg"> ABSEN</button>
+               
+               
+            </div>
+
+        </div>
+        </form>
+      </div>
+      </div>
+          
+
+
+
+
+
+{% else %}
+<p>You're not allowed here!</p>
+{% endif %}
+
+
+
+<script>
+function myFunctionsss() {
+  var txt;
+  var r = confirm("ABSEN BERHASIL");
+  var a = "{% url 'add-absen'%}" 
+  var log = "{% url 'logout'%}"
+  // window.location.reload(true);
+  if (r == true) {
+    // var redirectWindow = window.open(a,);
+    // redirectWindow.location;
+    // window.open(a, '_blank');
+    var redirectWindow = window.open(a, '_blank');
+    redirectWindow.location;
+    // window.location = a, true;
+    
+    // location.reload();
+    
+    
+    // window.location.assign(a); 
+    // txt = "You pressed Cancel!";
+    // window.open(a);
+  } else {
+    txt = "You pressed Cancel!";
+    // window.location.replace("http://stackoverflow.com");
+    // var redirectWindow = window.open('http://google.com', '_blank');
+    // redirectWindow.location;
+    window.open(log).focus();
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+    
+{% endblock contents %}
